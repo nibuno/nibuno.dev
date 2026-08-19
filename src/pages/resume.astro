@@ -1,0 +1,79 @@
+---
+import BaseLayout from "../components/BaseLayout.astro";
+
+const title = "経歴 — Tatsuya Nibuno / nibu";
+const description =
+  "Tatsuya Nibuno（nibu）が異業種からエンジニアになるまでと、その後の経歴をまとめています。";
+---
+
+<BaseLayout title={title} description={description}>
+  <main class="detail-main" id="main">
+    <a class="back-link" href="/#career">← トップへ戻る</a>
+
+    <article class="detail-article resume-article">
+      <header class="detail-header">
+        <p class="project-meta">Tatsuya Nibuno / nibu</p>
+        <h1>経歴</h1>
+        <p class="detail-lead">
+          販促支援の仕事をしながらプログラミングを学び、2020年からエンジニアとしてWebアプリケーションを開発しています。
+        </p>
+      </header>
+
+      <section class="detail-section">
+        <h2>これまで</h2>
+        <ol class="career-list">
+          <li class="career-entry">
+            <p class="career-period">新卒入社〜</p>
+            <div>
+              <h3>販促支援から、ものをつくる仕事へ</h3>
+              <p>
+                大学卒業後、ねじの専門商社に新卒入社し、営業部で販促支援業務に従事しました。仕事の傍らPHPを独学し、社内ポータルサイトを作り直しました。
+              </p>
+              <p>
+                自分の手で作ったものが動き、周囲に使ってもらえることの楽しさを知ったのが、エンジニアを志したきっかけです。
+              </p>
+              <p class="career-detail">
+                <a
+                  href="https://scrapbox.io/nibu/%E3%81%AA%E3%82%93%E3%81%A7%E3%82%A8%E3%83%B3%E3%82%B8%E3%83%8B%E3%82%A2%E3%81%AB%E3%81%AA%E3%82%8D%E3%81%86%E3%81%A8%E6%80%9D%E3%81%A3%E3%81%9F%E3%81%AE%EF%BC%9F"
+                  target="_blank"
+                  rel="noreferrer"
+                >「なんでエンジニアになろうと思ったの？」を読む ↗</a>
+              </p>
+            </div>
+          </li>
+          <li class="career-entry">
+            <p class="career-period"><time datetime="2020-02">2020年2月</time></p>
+            <div>
+              <h3>実務未経験からエンジニアへ</h3>
+              <p>
+                エンジニア派遣会社へ転職し、基幹システムの保守・運用・開発を経験しました。エンジニアとして働き始めたこの時期にPythonと出会いました。
+              </p>
+            </div>
+          </li>
+          <li class="career-entry">
+            <p class="career-period"><time datetime="2023-08">2023年8月〜</time></p>
+            <div>
+              <h3>株式会社ビープラウド</h3>
+              <p>
+                バックエンドを中心にWebアプリケーションを開発しています。PythonやDjangoを深く学びながら、登壇やブログを通して、試したことや学んだことを継続して発信しています。
+              </p>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <section class="detail-section">
+        <h2>活動</h2>
+        <p>
+          nibuとして個人開発、ブログ、登壇を続けています。過去にはYumihiki名義でも登壇していました。
+        </p>
+        <nav class="detail-links" aria-label="活動へのリンク">
+          <a href="https://github.com/nibuno" target="_blank" rel="noreferrer">GitHub ↗</a>
+          <a href="https://nibutan.hatenablog.com/" target="_blank" rel="noreferrer">Blog ↗</a>
+          <a href="https://www.docswell.com/user/nibuno" target="_blank" rel="noreferrer">Docswell ↗</a>
+          <a href="https://scrapbox.io/nibu/" target="_blank" rel="noreferrer">Cosense ↗</a>
+        </nav>
+      </section>
+    </article>
+  </main>
+</BaseLayout>

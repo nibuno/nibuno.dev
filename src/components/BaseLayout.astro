@@ -1,0 +1,51 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Tatsuya Nibuno / nibu",
+  description =
+    "Tatsuya Nibuno（nibu）の個人サイト。個人開発、発表や文章、異業種からエンジニアになるまでの経歴をまとめています。",
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:site_name" content="Tatsuya Nibuno / nibu" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="canonical" href={canonicalURL} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">本文へ移動</a>
+    <slot />
+
+    <footer class="site-footer" id="footer">
+      <div>
+        <span class="footer-label">リンク</span>
+        <nav class="footer-links" aria-label="外部リンク">
+          <a href="https://github.com/nibuno" target="_blank" rel="noreferrer">GitHub</a>
+          <a href="https://nibutan.hatenablog.com/" target="_blank" rel="noreferrer">Blog</a>
+          <a href="https://scrapbox.io/nibu/" target="_blank" rel="noreferrer">Cosense</a>
+          <a href="https://www.docswell.com/user/nibuno" target="_blank" rel="noreferrer">Docswell</a>
+          <a href="https://x.com/YumihikiDev" target="_blank" rel="noreferrer">X</a>
+        </nav>
+      </div>
+      <p class="footer-copy">© 2026 Tatsuya Nibuno</p>
+    </footer>
+  </body>
+</html>
