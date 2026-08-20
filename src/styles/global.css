@@ -253,7 +253,8 @@ main,
 
 .project-links,
 .detail-links,
-.section-links {
+.section-links,
+.detail-end-support {
   display: flex;
   flex-wrap: wrap;
   gap: 0.45rem 1.15rem;
@@ -483,7 +484,20 @@ main,
   margin-top: var(--space-section);
   padding-top: 1.5rem;
   border-top: 1px solid var(--color-rule);
-  font-size: 0.84rem;
+}
+
+.detail-end-primary {
+  margin: 0;
+  font-size: clamp(1rem, 0.95rem + 0.22vw, 1.1rem);
+  line-height: 1.7;
+}
+
+.detail-end-support {
+  margin: 0;
+}
+
+.detail-end-primary + .detail-end-support {
+  margin-top: 1.2rem;
 }
 
 .resume-article .detail-lead p {

@@ -2,6 +2,8 @@ export type ProjectLink = {
   label: string;
   href: string;
   showOnHome?: boolean;
+  /** 詳細ページを読み終えたあとに、いちばん押してほしいリンク */
+  primary?: boolean;
 };
 
 export type ProjectScreenshot = {
@@ -19,6 +21,8 @@ export type ProjectSection = {
 export type Project = {
   slug: string;
   title: string;
+  /** パンくずや行動導線で使う短い呼び名。省略時は title */
+  shortTitle?: string;
   period: string;
   status?: string;
   featured?: boolean;
@@ -41,6 +45,7 @@ export const projects: Project[] = [
     },
     stack: "React / TypeScript / Vite / Tailwind CSS / Canvas API / Cloudflare Workers",
     title: "emoemo — かんたんemojiメーカー",
+    shortTitle: "emoemo",
     period: "2026",
     featured: true,
     summary:
@@ -50,6 +55,7 @@ export const projects: Project[] = [
         label: "使ってみる",
         href: "https://nibuno.github.io/emoemo/",
         showOnHome: true,
+        primary: true,
       },
       { label: "GitHub", href: "https://github.com/nibuno/emoemo" },
     ],
@@ -70,6 +76,14 @@ export const projects: Project[] = [
     ],
   },
 ];
+
+export const featuredProjects = projects.filter((project) => project.featured);
+
+/**
+ * 一覧に載る数がトップと同じあいだは、遷移しても増えるものがない。
+ * その間は一覧ページへの導線を出さず、パンくずも中間階層を挟まない。
+ */
+export const hasProjectsIndex = featuredProjects.length < projects.length;
 
 export function getProject(slug: string): Project | undefined {
   return projects.find((project) => project.slug === slug);

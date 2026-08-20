@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "../../components/BaseLayout.astro";
-import { projects, type Project } from "../../data/projects";
+import { hasProjectsIndex, projects, type Project } from "../../data/projects";
 
 export function getStaticPaths() {
   return projects.map((project) => ({
@@ -15,6 +15,14 @@ interface Props {
 
 const { project } = Astro.props;
 const title = `${project.title} — Tatsuya Nibuno / nibu`;
+const shortTitle = project.shortTitle ?? project.title;
+
+// 読み終えたあとの主動線。ほかの外部リンクは冒頭にあるので、ここでは繰り返さない
+const primaryLink = project.links.find((link) => link.primary);
+
+// 一覧を出していないあいだは、実際にたどってきたトップのセクションへ返す
+const backHref = hasProjectsIndex ? "/projects/" : "/#projects";
+const backLabel = hasProjectsIndex ? "ほかのつくったものを見る" : "サイトのTOPへ";
 ---
 
 <BaseLayout title={title} description={project.summary}>
@@ -22,9 +30,15 @@ const title = `${project.title} — Tatsuya Nibuno / nibu`;
     <nav class="breadcrumb" aria-label="パンくずリスト">
       <a href="/">TOP</a>
       <span aria-hidden="true">/</span>
-      <a href="/projects/">つくったもの</a>
-      <span aria-hidden="true">/</span>
-      <span aria-current="page">{project.title}</span>
+      {
+        hasProjectsIndex && (
+          <>
+            <a href="/projects/">つくったもの</a>
+            <span aria-hidden="true">/</span>
+          </>
+        )
+      }
+      <span aria-current="page">{shortTitle}</span>
     </nav>
 
     <article class="detail-article">
@@ -88,8 +102,20 @@ const title = `${project.title} — Tatsuya Nibuno / nibu`;
       }
     </article>
 
-    <nav class="detail-end-nav" aria-label="つくったもののページ">
-      <a href="/projects/">← つくったものの一覧へ戻る</a>
+    <nav class="detail-end-nav" aria-label="このページのあとの行き先">
+      {
+        primaryLink && (
+          <p class="detail-end-primary">
+            <a href={primaryLink.href} target="_blank" rel="noreferrer">
+              {shortTitle}を{primaryLink.label} ↗
+            </a>
+          </p>
+        )
+      }
+
+      <p class="detail-end-support">
+        <a href={backHref}>← {backLabel}</a>
+      </p>
     </nav>
   </main>
 </BaseLayout>
