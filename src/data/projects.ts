@@ -44,7 +44,7 @@ export const projects: Project[] = [
     period: "2026",
     featured: true,
     summary:
-      "入力した文字を、SlackやDiscordで使えるカスタム絵文字に変えるWebアプリケーションです。",
+      "SlackやDiscordで使えるカスタム絵文字をテキストから作成するWebアプリケーションです。",
     links: [
       {
         label: "使ってみる",
