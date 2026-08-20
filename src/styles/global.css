@@ -183,7 +183,6 @@ main,
 }
 
 .intro-copy {
-  max-width: 37rem;
   margin: 1.65rem 0 0;
   color: var(--color-copy);
 }
@@ -485,10 +484,6 @@ main,
   padding-top: 1.5rem;
   border-top: 1px solid var(--color-rule);
   font-size: 0.84rem;
-}
-
-.resume-article .career-list {
-  max-width: var(--content-width);
 }
 
 .resume-article .detail-lead p {
