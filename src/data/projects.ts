@@ -39,9 +39,9 @@ export const projects: Project[] = [
     slug: "emoemo",
     screenshot: {
       src: "/images/projects/emoemo.png",
-      alt: "emoemoの画面。テキストを入力すると、ゴシックや明朝体など6種類のフォントで絵文字のプレビューが並ぶ。",
+      alt: "emoemoの画面。「emo emo」と入力してピンク色を選ぶと、ゴシックや明朝体など6種類のフォントでプレビューが並ぶ。おまかせ機能が色とフォントの組み合わせを提案している。",
       width: 1360,
-      height: 1149,
+      height: 1097,
     },
     stack: "React / TypeScript / Vite / Tailwind CSS / Canvas API / Cloudflare Workers",
     title: "emoemo — かんたんemojiメーカー",
