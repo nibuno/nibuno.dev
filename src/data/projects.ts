@@ -4,6 +4,13 @@ export type ProjectLink = {
   showOnHome?: boolean;
 };
 
+export type ProjectScreenshot = {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+};
+
 export type ProjectSection = {
   heading: string;
   paragraphs?: string[];
@@ -16,6 +23,7 @@ export type Project = {
   status?: string;
   featured?: boolean;
   summary: string;
+  screenshot?: ProjectScreenshot;
   stack?: string;
   why?: string[];
   links: ProjectLink[];
@@ -25,6 +33,12 @@ export type Project = {
 export const projects: Project[] = [
   {
     slug: "emoemo",
+    screenshot: {
+      src: "/images/projects/emoemo.png",
+      alt: "emoemoの画面。テキストを入力すると、ゴシックや明朝体など6種類のフォントで絵文字のプレビューが並ぶ。",
+      width: 1360,
+      height: 1149,
+    },
     stack: "React / TypeScript / Vite / Tailwind CSS / Canvas API / Cloudflare Workers",
     title: "emoemo — かんたんemojiメーカー",
     period: "2026",

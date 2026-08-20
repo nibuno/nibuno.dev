@@ -45,6 +45,20 @@ const title = `${project.title} — Tatsuya Nibuno / nibu`;
       </header>
 
       {
+        project.screenshot && (
+          <figure class="detail-shot">
+            <img
+              src={project.screenshot.src}
+              alt={project.screenshot.alt}
+              width={project.screenshot.width}
+              height={project.screenshot.height}
+              loading="lazy"
+            />
+          </figure>
+        )
+      }
+
+      {
         project.stack && (
           <dl class="detail-stack">
             <dt>技術</dt>

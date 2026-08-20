@@ -435,6 +435,17 @@ main,
   font-size: clamp(1rem, 0.95rem + 0.22vw, 1.1rem);
 }
 
+.detail-shot {
+  margin: clamp(2.5rem, 7vw, 4rem) 0 0;
+}
+
+.detail-shot img {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--color-rule);
+  border-radius: 2px;
+}
+
 .detail-stack {
   display: grid;
   grid-template-columns: 7.5rem 1fr;
