@@ -4,11 +4,6 @@ export type ProjectLink = {
   showOnHome?: boolean;
 };
 
-export type ProjectFact = {
-  label: string;
-  value: string;
-};
-
 export type ProjectSection = {
   heading: string;
   paragraphs?: string[];
@@ -21,7 +16,8 @@ export type Project = {
   status?: string;
   featured?: boolean;
   summary: string;
-  facts: ProjectFact[];
+  stack?: string;
+  why?: string[];
   links: ProjectLink[];
   sections: ProjectSection[];
 };
@@ -29,16 +25,12 @@ export type Project = {
 export const projects: Project[] = [
   {
     slug: "emoemo",
+    stack: "React / TypeScript / Vite / Tailwind CSS / Canvas API / Cloudflare Workers",
     title: "emoemo — かんたんemojiメーカー",
     period: "2026",
     featured: true,
     summary:
       "SlackやDiscordで使うカスタム絵文字を、入力した文字から作れるWebアプリケーションです。",
-    facts: [
-      { label: "技術", value: "React / TypeScript / Vite / Tailwind CSS" },
-      { label: "描画", value: "Canvas API" },
-      { label: "AI", value: "Cloudflare Workers / Workers AI" },
-    ],
     links: [
       {
         label: "使ってみる",
@@ -65,16 +57,12 @@ export const projects: Project[] = [
   },
   {
     slug: "voice-input-tool",
+    stack: "Python / OpenAI Whisper API / macOS",
     title: "Voice Input Tool",
     period: "2026",
     featured: true,
     summary:
       "文字起こしツールです。メニューバーアプリとCLIを用意しています。",
-    facts: [
-      { label: "技術", value: "Python / OpenAI Whisper API" },
-      { label: "環境", value: "macOS / Python 3.13以上" },
-      { label: "入力", value: "Hotkey / Microphone" },
-    ],
     links: [
       { label: "GitHub", href: "https://github.com/nibuno/voice-input-tool" },
     ],
@@ -96,16 +84,12 @@ export const projects: Project[] = [
   },
   {
     slug: "shisan",
+    stack: "Django / Django Ninja / React / TypeScript / PostgreSQL / Docker",
     title: "shisan — 家庭の資産記録",
     period: "2026",
     featured: true,
     summary:
       "家庭の口座や投資資産を月ごとに記録し、名義人・カテゴリ別の内訳と推移を確認するための個人向けWebアプリです。",
-    facts: [
-      { label: "技術", value: "Django / Django Ninja / React / TypeScript" },
-      { label: "データ", value: "PostgreSQL / 月次スナップショット" },
-      { label: "認証", value: "Session / CSRF" },
-    ],
     links: [],
     sections: [
       {
@@ -132,15 +116,11 @@ export const projects: Project[] = [
   },
   {
     slug: "serpentine",
+    stack: "Python / AST / C",
     title: "Serpentine — 小さなPython AOTコンパイラ",
     period: "2026",
     summary:
       "型付きPythonの一部を解析・型検査し、Cコードを生成してネイティブ実行ファイルへ変換する実験的なAOTコンパイラです。",
-    facts: [
-      { label: "技術", value: "Python / AST / C" },
-      { label: "出力", value: "C source / Native executable" },
-      { label: "対象", value: "int / bool / 制御構文 / 関数" },
-    ],
     links: [
       { label: "GitHub", href: "https://github.com/nibuno/serpentine" },
     ],
@@ -163,15 +143,14 @@ export const projects: Project[] = [
   },
   {
     slug: "hiita",
+    stack: "Laravel 6 / PHP 7.2 / Bootstrap",
     title: "Hiita — 弓道の練習記録",
     period: "2019",
     status: "公開終了",
     summary:
       "4射ごとの的中とメモを記録し、日ごとの的中率や練習日を振り返るために作った弓道の練習記録サービスです。",
-    facts: [
-      { label: "制作", value: "2019" },
-      { label: "技術", value: "Laravel 6 / PHP 7.2 / Bootstrap" },
-      { label: "状態", value: "公開終了" },
+    why: [
+      "弓道を続けていた経験から、手書きの記録と的中率の計算を置き換えたいと考えて作りました。",
     ],
     links: [{ label: "GitHub", href: "https://github.com/nibuno/Hiita" }],
     sections: [
@@ -185,7 +164,7 @@ export const projects: Project[] = [
       {
         heading: "当時のこと",
         paragraphs: [
-          "弓道を続けていた経験から、手書きの記録と的中率の計算を置き換えたいと考えて作りました。Laravelを学びながら、ログイン、記録の追加・編集・削除、集計、カレンダー表示までを実装した初期の個人開発です。",
+          "Laravelを学びながら、ログイン、記録の追加・編集・削除、集計、カレンダー表示までを実装した初期の個人開発です。",
           "サービスの公開は終了しています。現在の環境へそのまま再公開せず、2019年当時の制作として残しています。",
         ],
       },
@@ -193,16 +172,12 @@ export const projects: Project[] = [
   },
   {
     slug: "previous-portfolio",
+    stack: "Gatsby / React / Tailwind CSS",
     title: "以前のポートフォリオ",
     period: "2019–2020",
     status: "公開終了",
     summary:
       "エンジニアへ転身した頃にGatsbyで制作し、職務経験や学習記録、週ごとの振り返りをまとめていた個人サイトです。",
-    facts: [
-      { label: "制作", value: "2019–2020" },
-      { label: "技術", value: "Gatsby / React / Tailwind CSS" },
-      { label: "状態", value: "公開終了" },
-    ],
     links: [
       { label: "GitHub", href: "https://github.com/nibuno/portfolio" },
     ],

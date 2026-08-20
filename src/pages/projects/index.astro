@@ -5,38 +5,50 @@ import { projects } from "../../data/projects";
 const title = "個人開発 — Tatsuya Nibuno / nibu";
 const description =
   "Tatsuya Nibuno（nibu）がこれまでにつくったWebアプリケーション、ツール、個人サイトの一覧です。";
+
+const years = [...new Set(projects.map((project) => project.period.slice(0, 4)))];
+const groups = years.map((year) => ({
+  year,
+  items: projects.filter((project) => project.period.slice(0, 4) === year),
+}));
 ---
 
 <BaseLayout title={title} description={description}>
   <main class="detail-main projects-index-main" id="main">
-    <a class="back-link" href="/#projects">← TOPへ戻る</a>
+    <nav class="breadcrumb" aria-label="パンくずリスト">
+      <a href="/">TOP</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">個人開発</span>
+    </nav>
 
     <header class="projects-index-header">
       <h1>個人開発</h1>
     </header>
 
-    <ol class="project-list projects-index-list">
-      {
-        projects.map((project) => (
-          <li class="project">
-            <p class="project-meta">
-              {project.period}
-              {project.status && ` · ${project.status}`}
-            </p>
-            <h2>
-              <a class="project-title-link" href={`/projects/${project.slug}/`}>
-                {project.title}
-              </a>
-            </h2>
-            <p class="project-description">{project.summary}</p>
-            <p class="project-links">
-              <a class="project-link" href={`/projects/${project.slug}/`}>
-                詳しく見る →
-              </a>
-            </p>
-          </li>
-        ))
-      }
-    </ol>
+    {
+      groups.map((group) => (
+        <section class="project-year-group">
+          <h2 class="project-year">{group.year}</h2>
+          <ol class="project-list projects-index-list">
+            {group.items.map((project) => (
+              <li class="project">
+                {project.status && <p class="project-meta">{project.status}</p>}
+                <h3>
+                  <a class="project-title-link" href={`/projects/${project.slug}/`}>
+                    {project.title}
+                  </a>
+                </h3>
+                <p class="project-description">{project.summary}</p>
+                <p class="project-links">
+                  <a class="project-link" href={`/projects/${project.slug}/`}>
+                    詳しく見る →
+                  </a>
+                </p>
+              </li>
+            ))}
+          </ol>
+        </section>
+      ))
+    }
   </main>
 </BaseLayout>

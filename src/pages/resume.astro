@@ -8,7 +8,11 @@ const description =
 
 <BaseLayout title={title} description={description}>
   <main class="detail-main" id="main">
-    <a class="back-link" href="/#career">← トップへ戻る</a>
+    <nav class="breadcrumb" aria-label="パンくずリスト">
+      <a href="/">TOP</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">経歴</span>
+    </nav>
 
     <article class="detail-article resume-article">
       <header class="detail-header">
@@ -118,16 +122,6 @@ const description =
             <dd>新入社員5名のメンターを担当しました。プロジェクトでは、ふりかえり会の発案と進行にも取り組んでいます。</dd>
           </div>
         </dl>
-      </section>
-
-      <section class="detail-section">
-        <h2>発信・外部リンク</h2>
-        <nav class="detail-links" aria-label="活動へのリンク">
-          <a href="https://github.com/nibuno" target="_blank" rel="noreferrer">GitHub ↗</a>
-          <a href="https://nibutan.hatenablog.com/" target="_blank" rel="noreferrer">Blog ↗</a>
-          <a href="https://www.docswell.com/user/nibuno" target="_blank" rel="noreferrer">Docswell ↗</a>
-          <a href="https://scrapbox.io/nibu/" target="_blank" rel="noreferrer">Cosense ↗</a>
-        </nav>
       </section>
     </article>
   </main>

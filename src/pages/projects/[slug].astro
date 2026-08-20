@@ -19,7 +19,13 @@ const title = `${project.title} — Tatsuya Nibuno / nibu`;
 
 <BaseLayout title={title} description={project.summary}>
   <main class="detail-main" id="main">
-    <a class="back-link" href="/projects/">← 個人開発の一覧へ</a>
+    <nav class="breadcrumb" aria-label="パンくずリスト">
+      <a href="/">TOP</a>
+      <span aria-hidden="true">/</span>
+      <a href="/projects/">個人開発</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">{project.title}</span>
+    </nav>
 
     <article class="detail-article">
       <header class="detail-header">
@@ -38,16 +44,25 @@ const title = `${project.title} — Tatsuya Nibuno / nibu`;
         }
       </header>
 
-      <dl class="detail-facts">
-        {
-          project.facts.map((fact) => (
-            <div>
-              <dt>{fact.label}</dt>
-              <dd>{fact.value}</dd>
-            </div>
-          ))
-        }
-      </dl>
+      {
+        project.stack && (
+          <dl class="detail-stack">
+            <dt>技術</dt>
+            <dd>{project.stack}</dd>
+          </dl>
+        )
+      }
+
+      {
+        project.why && (
+          <section class="detail-section">
+            <h2>なぜつくったか</h2>
+            {project.why.map((paragraph) => (
+              <p>{paragraph}</p>
+            ))}
+          </section>
+        )
+      }
 
       {
         project.sections.map((section) => (
@@ -60,7 +75,7 @@ const title = `${project.title} — Tatsuya Nibuno / nibu`;
     </article>
 
     <nav class="detail-end-nav" aria-label="個人開発のページ">
-      <a href="/projects/">個人開発の一覧へ戻る →</a>
+      <a href="/projects/">← 個人開発の一覧へ戻る</a>
     </nav>
   </main>
 </BaseLayout>

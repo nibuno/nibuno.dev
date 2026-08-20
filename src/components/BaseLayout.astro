@@ -35,17 +35,34 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <slot />
 
     <footer class="site-footer" id="footer">
-      <div>
-        <span class="footer-label">リンク</span>
-        <nav class="footer-links" aria-label="外部リンク">
-          <a href="https://github.com/nibuno" target="_blank" rel="noreferrer">GitHub</a>
-          <a href="https://nibutan.hatenablog.com/" target="_blank" rel="noreferrer">Blog</a>
-          <a href="https://scrapbox.io/nibu/" target="_blank" rel="noreferrer">Cosense</a>
-          <a href="https://www.docswell.com/user/nibuno" target="_blank" rel="noreferrer">Docswell</a>
-          <a href="https://x.com/YumihikiDev" target="_blank" rel="noreferrer">X</a>
-        </nav>
-      </div>
-      <p class="footer-copy">© 2026 Tatsuya Nibuno</p>
+      <nav class="footer-links" aria-label="外部リンク">
+        <a href="https://github.com/nibuno" target="_blank" rel="noreferrer">GitHub</a>
+        <a href="https://nibutan.hatenablog.com/" target="_blank" rel="noreferrer">Blog</a>
+        <a href="https://scrapbox.io/nibu/" target="_blank" rel="noreferrer">Cosense</a>
+        <a href="https://www.docswell.com/user/nibuno" target="_blank" rel="noreferrer">Docswell</a>
+        <a href="https://x.com/YumihikiDev" target="_blank" rel="noreferrer">X</a>
+      </nav>
     </footer>
+
+    <button class="to-top" type="button" aria-label="TOPへ戻る">
+      <span aria-hidden="true">↑</span>
+    </button>
+
+    <script>
+      const toTop = document.querySelector<HTMLButtonElement>(".to-top");
+
+      if (toTop) {
+        const update = () => {
+          const past = window.scrollY >= window.innerHeight * 0.8;
+          toTop.classList.toggle("is-visible", past);
+        };
+
+        update();
+        window.addEventListener("load", update);
+        window.addEventListener("scroll", update, { passive: true });
+        window.addEventListener("resize", update, { passive: true });
+        toTop.addEventListener("click", () => window.scrollTo({ top: 0 }));
+      }
+    </script>
   </body>
 </html>
