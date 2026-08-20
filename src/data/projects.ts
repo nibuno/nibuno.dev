@@ -50,6 +50,10 @@ export const projects: Project[] = [
     featured: true,
     summary:
       "SlackやDiscordで使えるカスタム絵文字をテキストから作成するWebアプリケーションです。",
+    why: [
+      "Slackでemojiをつけてリアクションをすることが多く、自分でもemojiをつくれるWebアプリケーションが欲しくなって取り組みました。",
+      "最初はDjangoでバックエンドを実装していましたが、デプロイと運用の気軽さを考えてフロントエンド中心の構成に切り替え、Reactベースでつくることにしました。",
+    ],
     links: [
       {
         label: "使ってみる",
