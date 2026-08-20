@@ -514,6 +514,35 @@ main,
   display: block;
 }
 
+.resume-article .career-list {
+  border-top: none;
+}
+
+.resume-article .career-entry {
+  padding-block: 0;
+  border-bottom: none;
+}
+
+.resume-article .career-entry + .career-entry {
+  margin-top: 3.2rem;
+}
+
+/* 期間を罫線の中に置いて、経歴の区切りそのものにする */
+.resume-article .career-entry .career-period {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  margin: 0 0 1.7rem;
+}
+
+.resume-article .career-entry .career-period::before,
+.resume-article .career-entry .career-period::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--color-rule);
+}
+
 .resume-article .career-entry h3 {
   margin-bottom: 1rem;
 }
