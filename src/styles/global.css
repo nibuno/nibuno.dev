@@ -9,6 +9,8 @@
   --color-alias-mark: #fff353;
   --color-focus: #1f5f96;
   --content-width: 42.5rem;
+  /* ページの主見出し。トップの名前と下層ページのタイトルで共有する */
+  --font-size-page-title: clamp(1.38rem, 1.08rem + 1.05vw, 2rem);
   --space-page-inline: clamp(1.25rem, 5vw, 3rem);
   --space-section: clamp(5rem, 11vw, 8.5rem);
   --duration-short: 160ms;
@@ -160,7 +162,7 @@ main,
 .intro h1 {
   max-width: 16em;
   margin: 0;
-  font-size: clamp(1.38rem, 1.08rem + 1.05vw, 2rem);
+  font-size: var(--font-size-page-title);
   font-weight: 540;
   line-height: 1.65;
   letter-spacing: 0.005em;
@@ -386,7 +388,7 @@ main,
 
 .projects-index-header h1 {
   margin: 0;
-  font-size: clamp(1.5rem, 1.25rem + 0.9vw, 2rem);
+  font-size: var(--font-size-page-title);
   font-weight: 580;
   line-height: 1.5;
 }
@@ -411,7 +413,7 @@ main,
 
 .detail-header h1 {
   margin: 0.5rem 0 1.4rem;
-  font-size: clamp(1.7rem, 1.3rem + 1.6vw, 2.7rem);
+  font-size: var(--font-size-page-title);
   font-weight: 580;
   line-height: 1.45;
   letter-spacing: 0;
