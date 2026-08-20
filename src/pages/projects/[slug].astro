@@ -19,28 +19,24 @@ const title = `${project.title} — Tatsuya Nibuno / nibu`;
 
 <BaseLayout title={title} description={project.summary}>
   <main class="detail-main" id="main">
-    <a class="back-link" href="/#projects">← 個人開発へ戻る</a>
+    <a class="back-link" href="/projects/">← 個人開発の一覧へ</a>
 
     <article class="detail-article">
       <header class="detail-header">
-        <p class="project-meta">{project.kind}</p>
         <h1>{project.title}</h1>
         <p class="detail-lead">{project.summary}</p>
-        <nav class="detail-links" aria-label={`${project.title}の外部リンク`}>
-          {
-            project.links.map((link) => (
-              <a href={link.href} target="_blank" rel="noreferrer">
-                {link.label} ↗
-              </a>
-            ))
-          }
-        </nav>
+        {
+          project.links.length > 0 && (
+            <nav class="detail-links" aria-label={`${project.title}の外部リンク`}>
+              {project.links.map((link) => (
+                <a href={link.href} target="_blank" rel="noreferrer">
+                  {link.label} ↗
+                </a>
+              ))}
+            </nav>
+          )
+        }
       </header>
-
-      <div class="detail-project-mark" aria-hidden="true">
-        <span>{project.kind}</span>
-        <strong>{project.title}</strong>
-      </div>
 
       <dl class="detail-facts">
         {
@@ -58,18 +54,13 @@ const title = `${project.title} — Tatsuya Nibuno / nibu`;
           <section class="detail-section">
             <h2>{section.heading}</h2>
             {section.paragraphs?.map((paragraph) => <p>{paragraph}</p>)}
-            {section.items && (
-              <ul>
-                {section.items.map((item) => <li>{item}</li>)}
-              </ul>
-            )}
           </section>
         ))
       }
     </article>
 
     <nav class="detail-end-nav" aria-label="個人開発のページ">
-      <a href="/#projects">個人開発の一覧へ戻る →</a>
+      <a href="/projects/">個人開発の一覧へ戻る →</a>
     </nav>
   </main>
 </BaseLayout>

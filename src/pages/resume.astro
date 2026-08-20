@@ -12,26 +12,84 @@ const description =
 
     <article class="detail-article resume-article">
       <header class="detail-header">
-        <p class="project-meta">Tatsuya Nibuno / nibu</p>
         <h1>経歴</h1>
-        <p class="detail-lead">
-          販促支援の仕事をしながらプログラミングを学び、2020年からエンジニアとしてWebアプリケーションを開発しています。
-        </p>
+        <div class="detail-lead">
+          <p>
+            <span class="detail-sentence">大学卒業後は、新卒で入社した会社で販促支援業務に幅広く従事していました。</span>
+            <span class="detail-sentence">この間、未経験から独学でPHPを学び、社内ポータルサイトを作り直しました。</span>
+          </p>
+          <p>
+            この経験を通じて、自分のつくったものが動く楽しさと、周りの人に喜ばれるうれしさを知り、エンジニアの道を志すようになりました。
+          </p>
+          <p>
+            <span class="detail-sentence">2020年2月にエンジニア派遣会社へ入社し、エンジニアとして働き始めました。</span>
+            <span class="detail-sentence">2023年8月からは株式会社ビープラウドに所属しています。</span>
+          </p>
+        </div>
       </header>
 
       <section class="detail-section">
-        <h2>これまで</h2>
+        <h2>職務経歴</h2>
         <ol class="career-list">
           <li class="career-entry">
-            <p class="career-period">新卒入社〜</p>
-            <div>
-              <h3>販促支援から、ものをつくる仕事へ</h3>
+            <p class="career-period"><time datetime="2023-08">2023年8月〜</time></p>
+            <div class="career-body">
+              <h3>株式会社ビープラウド</h3>
+              <p class="career-role">Webアプリケーションエンジニア</p>
               <p>
-                大学卒業後、ねじの専門商社に新卒入社し、営業部で販促支援業務に従事しました。仕事の傍らPHPを独学し、社内ポータルサイトを作り直しました。
+                受託開発プロジェクトで、Python・Djangoを中心にWebアプリケーションの設計、実装、運用に携わっています。バックエンドを軸に、フロントエンドやAWS上の運用も担当しています。
               </p>
+              <ul class="career-highlights">
+                <li>4〜5名のスクラムチームで、顧客との仕様調整から実装まで担当</li>
+                <li>データ不整合の調査・根本対応と、Slow Queryの改善</li>
+                <li>Django 5.2へのアップグレード、CSV取り込みや各種申込フォームの開発</li>
+              </ul>
+              <dl class="career-tech">
+                <dt>技術</dt>
+                <dd>Python / Django / Django REST Framework / Vue.js / TypeScript / PostgreSQL / Docker / AWS</dd>
+              </dl>
+            </div>
+          </li>
+          <li class="career-entry">
+            <p class="career-period">
+              <time datetime="2020-02">2020年2月</time>〜<time datetime="2023-07">2023年7月</time>
+            </p>
+            <div class="career-body">
+              <h3>エンジニア派遣会社</h3>
+              <p class="career-role">Webエンジニア / 自社内チームリーダー</p>
               <p>
-                自分の手で作ったものが動き、周囲に使ってもらえることの楽しさを知ったのが、エンジニアを志したきっかけです。
+                ECサイトを運営する企業の受発注関連チームに参画し、社内基幹システム、EDI連携、仕入先向けサイトの保守・運用・開発を担当しました。
               </p>
+              <ul class="career-highlights">
+                <li>EDI連携機能や仕入先向けサイトの機能追加</li>
+                <li>障害発生時の原因調査、関係部門との連絡、復旧作業の調整</li>
+                <li>自社内4名のチームリーダーとして、目標設定や学習、配属後のフォロー</li>
+              </ul>
+              <dl class="career-tech">
+                <dt>技術</dt>
+                <dd>Python / JavaScript / MySQL / AWS / GCP</dd>
+              </dl>
+            </div>
+          </li>
+          <li class="career-entry">
+            <p class="career-period">
+              <time datetime="2015-04">2015年4月</time>〜<time datetime="2020-01">2020年1月</time>
+            </p>
+            <div class="career-body">
+              <h3>ねじの専門商社</h3>
+              <p class="career-role">販促支援 / 社内ツール開発</p>
+              <p>
+                販促物や商品データの制作、カタログ校正、Webサイト運用、顧客向けECサイト・アプリケーションの問い合わせ対応やPRに携わりました。
+              </p>
+              <ul class="career-highlights">
+                <li>業務外でPHPを学び、社内ポータルサイトを新規開発・運用</li>
+                <li>社内向け検索ページとLINE Botの開発</li>
+                <li>VBAを用いた販売促進用紙作成システムの構築・運用</li>
+              </ul>
+              <dl class="career-tech">
+                <dt>技術</dt>
+                <dd>PHP / JavaScript / jQuery / SQLite / VBA / Illustrator / Photoshop / InDesign</dd>
+              </dl>
               <p class="career-detail">
                 <a
                   href="https://scrapbox.io/nibu/%E3%81%AA%E3%82%93%E3%81%A7%E3%82%A8%E3%83%B3%E3%82%B8%E3%83%8B%E3%82%A2%E3%81%AB%E3%81%AA%E3%82%8D%E3%81%86%E3%81%A8%E6%80%9D%E3%81%A3%E3%81%9F%E3%81%AE%EF%BC%9F"
@@ -41,32 +99,29 @@ const description =
               </p>
             </div>
           </li>
-          <li class="career-entry">
-            <p class="career-period"><time datetime="2020-02">2020年2月</time></p>
-            <div>
-              <h3>実務未経験からエンジニアへ</h3>
-              <p>
-                エンジニア派遣会社へ転職し、基幹システムの保守・運用・開発を経験しました。エンジニアとして働き始めたこの時期にPythonと出会いました。
-              </p>
-            </div>
-          </li>
-          <li class="career-entry">
-            <p class="career-period"><time datetime="2023-08">2023年8月〜</time></p>
-            <div>
-              <h3>株式会社ビープラウド</h3>
-              <p>
-                バックエンドを中心にWebアプリケーションを開発しています。PythonやDjangoを深く学びながら、登壇やブログを通して、試したことや学んだことを継続して発信しています。
-              </p>
-            </div>
-          </li>
         </ol>
       </section>
 
       <section class="detail-section">
-        <h2>活動</h2>
-        <p>
-          nibuとして個人開発、ブログ、登壇を続けています。過去にはYumihiki名義でも登壇していました。
-        </p>
+        <h2>活動・貢献</h2>
+        <dl class="career-contribution-list">
+          <div>
+            <dt>OSS</dt>
+            <dd>Django関連ライブラリへのPull Requestが3件マージされ、そのうち1件では、約2年間更新が止まっていたライブラリのPyPIリリースまで携わりました。</dd>
+          </div>
+          <div>
+            <dt>登壇・発信</dt>
+            <dd>Django Congress JP 2023で登壇しました。ブログや発表資料を通して、試したことや学んだことを継続して共有しています。</dd>
+          </div>
+          <div>
+            <dt>チーム支援</dt>
+            <dd>新入社員5名のメンターを担当しました。プロジェクトでは、ふりかえり会の発案と進行にも取り組んでいます。</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="detail-section">
+        <h2>発信・外部リンク</h2>
         <nav class="detail-links" aria-label="活動へのリンク">
           <a href="https://github.com/nibuno" target="_blank" rel="noreferrer">GitHub ↗</a>
           <a href="https://nibutan.hatenablog.com/" target="_blank" rel="noreferrer">Blog ↗</a>

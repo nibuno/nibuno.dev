@@ -2,6 +2,8 @@
 import BaseLayout from "../components/BaseLayout.astro";
 import ProfileAvatar from "../components/ProfileAvatar.astro";
 import { projects } from "../data/projects";
+
+const featuredProjects = projects.filter((project) => project.featured);
 ---
 
 <BaseLayout>
@@ -17,8 +19,8 @@ import { projects } from "../data/projects";
 
         <div class="intro-copy">
           <p>
-            Pythonを中心にWebアプリケーションをつくっています。<br />
-            個人では、日々使う小さなツールを作ったり、学んだことを文章や発表にまとめたりしています。
+            Pythonを軸にWebアプリケーション開発をしています。<br />
+            個人では、日々使う小さなツールを作ったり、学んだことをブログに書いたり、発表したりしています。
           </p>
         </div>
       </div>
@@ -28,65 +30,46 @@ import { projects } from "../data/projects";
 
     <section class="section" id="projects" aria-labelledby="projects-heading">
       <div class="section-heading">
-        <span class="section-index">01</span>
         <h2 id="projects-heading">個人開発</h2>
       </div>
 
       <ol class="project-list">
         {
-          projects.map((project) => (
+          featuredProjects.map((project) => (
             <li class="project">
-              <a
-                class="project-preview"
-                href={`/projects/${project.slug}/`}
-                aria-label={`${project.title}の詳細を見る`}
-              >
-                <span>{project.kind}</span>
-                <strong>{project.title}</strong>
-              </a>
-              <div class="project-body">
-                <div>
-                  <p class="project-meta">{project.kind}</p>
-                  <h3>
-                    <a class="project-title-link" href={`/projects/${project.slug}/`}>
-                      {project.title}
-                    </a>
-                  </h3>
-                  <p class="project-description">{project.summary}</p>
-                  <div class="project-links">
-                    <a class="project-link" href={`/projects/${project.slug}/`}>
-                      詳しく見る →
-                    </a>
-                    {project.links.map((link) => (
-                      <a
-                        class="project-link"
-                        href={link.href}
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        {link.label} ↗
-                      </a>
-                    ))}
-                  </div>
-                </div>
-                <dl class="project-facts">
-                  {project.facts.map((fact) => (
-                    <>
-                      <dt>{fact.label}</dt>
-                      <dd>{fact.value}</dd>
-                    </>
-                  ))}
-                </dl>
+              <h3>
+                <a class="project-title-link" href={`/projects/${project.slug}/`}>
+                  {project.title}
+                </a>
+              </h3>
+              <p class="project-description">{project.summary}</p>
+              <div class="project-links">
+                <a class="project-link" href={`/projects/${project.slug}/`}>
+                  詳しく見る →
+                </a>
+                {project.links.filter((link) => link.showOnHome).map((link) => (
+                  <a
+                    class="project-link"
+                    href={link.href}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {link.label} ↗
+                  </a>
+                ))}
               </div>
             </li>
           ))
         }
       </ol>
+
+      <p class="section-links">
+        <a href="/projects/">個人開発をすべて見る →</a>
+      </p>
     </section>
 
     <section class="section" id="writing" aria-labelledby="writing-heading">
       <div class="section-heading">
-        <span class="section-index">02</span>
         <h2 id="writing-heading">発表と文章</h2>
       </div>
 
@@ -149,36 +132,46 @@ import { projects } from "../data/projects";
 
     <section class="section" id="career" aria-labelledby="career-heading">
       <div class="section-heading">
-        <span class="section-index">03</span>
         <h2 id="career-heading">経歴</h2>
       </div>
 
       <ol class="career-list career-list--summary">
         <li class="career-entry">
-          <p class="career-period">新卒入社〜</p>
-          <div>
-            <h3>販促支援から、ものをつくる仕事へ</h3>
-            <p>社内ポータルサイトを作り直した経験から、エンジニアを志しました。</p>
-          </div>
-        </li>
-        <li class="career-entry">
-          <p class="career-period"><time datetime="2020-02">2020年2月</time></p>
-          <div>
-            <h3>実務未経験からエンジニアへ</h3>
-            <p>基幹システムの保守・運用・開発を経験し、Pythonと出会いました。</p>
-          </div>
-        </li>
-        <li class="career-entry">
           <p class="career-period"><time datetime="2023-08">2023年8月〜</time></p>
           <div>
             <h3>株式会社ビープラウド</h3>
-            <p>バックエンドを中心にWebアプリケーションを開発しています。</p>
+            <p>
+              バックエンドを中心にWebアプリケーションを開発しています。<br>
+              単に開発するだけでなく、顧客との仕様調整なども行います。<br>
+              ふりかえり会の発案・進行や新入社員のメンターなども経験しています。
+            </p>
+          </div>
+        </li>
+        <li class="career-entry">
+          <p class="career-period"><time datetime="2020-02">2020年2月〜</time></p>
+          <div>
+            <h3>エンジニア派遣会社</h3>
+            <p>
+              エンジニアとして働き始めました。<br>
+              基幹システムの保守・運用・開発を経験しました。<br>
+              自社のチームリーダーも経験しました。
+            </p>
+          </div>
+        </li>
+        <li class="career-entry">
+          <p class="career-period">2015年4月〜</p>
+          <div>
+            <h3>専門商社</h3>
+            <p>
+              新卒入社した専門商社で販促支援業務を中心に携わりました。<br>
+              当時はエンジニアではなく、社内ポータルサイトを作り直したきっかけから、エンジニアという生き方を志すようになりました。
+            </p>
           </div>
         </li>
       </ol>
 
       <p class="section-links">
-        <a href="/resume/">経歴を詳しく見る →</a>
+        <a href="/resume/">詳しく見る →</a>
       </p>
     </section>
   </main>
