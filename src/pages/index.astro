@@ -4,6 +4,8 @@ import ProfileAvatar from "../components/ProfileAvatar.astro";
 import { projects } from "../data/projects";
 
 const featuredProjects = projects.filter((project) => project.featured);
+// 一覧に載る数がトップと同じあいだは、遷移しても増えるものがない
+const hasMoreProjects = featuredProjects.length < projects.length;
 ---
 
 <BaseLayout>
@@ -66,9 +68,13 @@ const featuredProjects = projects.filter((project) => project.featured);
         }
       </ol>
 
-      <p class="section-links">
-        <a href="/projects/">個人開発をすべて見る →</a>
-      </p>
+      {
+        hasMoreProjects && (
+          <p class="section-links">
+            <a href="/projects/">個人開発をすべて見る →</a>
+          </p>
+        )
+      }
     </section>
 
     <section class="section" id="writing" aria-labelledby="writing-heading">
