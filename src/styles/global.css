@@ -515,14 +515,7 @@ main,
 }
 
 .resume-article .career-entry h3 {
-  margin-bottom: 0.35rem;
-}
-
-.resume-article .career-entry .career-role {
-  margin-bottom: 1.25rem;
-  color: var(--color-muted);
-  font-size: 0.82rem;
-  letter-spacing: 0.035em;
+  margin-bottom: 1rem;
 }
 
 .resume-article .career-highlights {
