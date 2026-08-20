@@ -555,8 +555,8 @@ main,
 
 .career-contribution-list div {
   display: grid;
-  grid-template-columns: 7.5rem 1fr;
-  gap: clamp(1.5rem, 5vw, 3rem);
+  grid-template-columns: 6rem 1fr;
+  gap: 1.75rem;
   padding-block: 1.35rem 1.5rem;
   border-bottom: 1px solid var(--color-rule);
 }
@@ -572,6 +572,46 @@ main,
   color: var(--color-copy-secondary);
   font-size: 0.88rem;
   line-height: 1.8;
+}
+
+.contribution-links {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.contribution-links li + li {
+  margin-top: 0.75rem;
+}
+
+.contribution-links--dated li {
+  display: grid;
+  grid-template-columns: 3.4rem 1fr;
+  gap: 0 0.85rem;
+  align-items: baseline;
+}
+
+.contribution-links--dated .contribution-note {
+  grid-column: 2;
+}
+
+.contribution-meta {
+  color: var(--color-muted);
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+}
+
+.contribution-note {
+  display: block;
+  margin-top: 0.15rem;
+  color: var(--color-muted);
+  font-size: 0.82rem;
+  line-height: 1.75;
+}
+
+.career-contribution-list .contribution-more {
+  margin: 1.4rem 0 0;
+  font-size: 0.82rem;
 }
 
 @media (max-width: 46rem) {
