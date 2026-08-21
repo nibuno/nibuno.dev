@@ -1,0 +1,26 @@
+---
+import BaseLayout from "../components/BaseLayout.astro";
+
+const title = "ページが見つかりません — Tatsuya Nibuno / nibu";
+const description =
+  "お探しのページは見つかりませんでした。Tatsuya Nibuno（nibu）の個人サイトです。";
+---
+
+<BaseLayout title={title} description={description}>
+  <main class="detail-main" id="main">
+    <article class="detail-article">
+      <header class="detail-header">
+        <h1>ページが見つかりません</h1>
+        <p class="detail-lead">
+          お探しのページは、移動したか削除された可能性があります。
+        </p>
+      </header>
+    </article>
+
+    <nav class="detail-end-nav" aria-label="このページのあとの行き先">
+      <p class="detail-end-primary">
+        <a href="/">サイトのTOPへ →</a>
+      </p>
+    </nav>
+  </main>
+</BaseLayout>
