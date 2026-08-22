@@ -72,5 +72,13 @@ const ogImageURL = new URL("/og.png", Astro.site);
         toTop.addEventListener("click", () => window.scrollTo({ top: 0 }));
       }
     </script>
+
+    <!-- アクセス解析。Cookieを使わないため同意バナーは不要 -->
+    <script
+      type="module"
+      src="https://static.cloudflareinsights.com/beacon.min.js"
+      data-cf-beacon='{"token": "154979df634c4677ada3dd531b5417ef"}'
+      is:inline
+    ></script>
   </body>
 </html>
