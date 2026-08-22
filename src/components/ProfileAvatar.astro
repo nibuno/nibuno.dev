@@ -1,7 +1,8 @@
-<span
+<button
   class="intro-avatar-switch"
-  role="img"
-  aria-label="nibuのチキンアイコン。背面に本人の写真が重なっていて、ポインターを重ねると入れ替わります"
+  type="button"
+  aria-pressed="false"
+  aria-label="nibuのアイコン。押すと本人の写真に入れ替わります"
 >
   <img
     class="intro-avatar intro-avatar--chicken"
@@ -17,4 +18,15 @@
     width="256"
     height="256"
   />
-</span>
+</button>
+
+<script>
+  const swap = document.querySelector<HTMLButtonElement>(".intro-avatar-switch");
+
+  if (swap) {
+    swap.addEventListener("click", () => {
+      const swapped = swap.classList.toggle("is-swapped");
+      swap.setAttribute("aria-pressed", String(swapped));
+    });
+  }
+</script>

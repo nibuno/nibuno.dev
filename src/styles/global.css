@@ -115,6 +115,11 @@ main,
   display: block;
   width: clamp(4rem, 8vw, 5.5rem);
   aspect-ratio: 1;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .intro-avatar {
@@ -139,6 +144,18 @@ main,
   transform: translate(0) rotate(0);
 }
 
+/* 押して入れ替える。タッチでもキーボードでも届く唯一の経路 */
+.intro-avatar-switch.is-swapped .intro-avatar--chicken {
+  opacity: 0;
+  transform: translate(-5px, -5px) rotate(-3deg);
+}
+
+.intro-avatar-switch.is-swapped .intro-avatar--profile {
+  transform: translate(0) rotate(0);
+  transition-delay: 35ms;
+}
+
+/* ポインターがある環境では、押さずに重ねるだけでも入れ替える */
 @media (hover: hover) and (pointer: fine) {
   .intro-avatar-switch:hover .intro-avatar--chicken {
     opacity: 0;
