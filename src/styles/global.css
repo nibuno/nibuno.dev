@@ -453,6 +453,12 @@ main,
   border-radius: 2px;
 }
 
+.detail-shot figcaption {
+  margin-top: 0.6rem;
+  color: var(--color-muted);
+  font-size: 0.85rem;
+}
+
 .detail-stack {
   display: grid;
   grid-template-columns: 7.5rem 1fr;

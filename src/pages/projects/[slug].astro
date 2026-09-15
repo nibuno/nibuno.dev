@@ -68,6 +68,7 @@ const backLabel = hasProjectsIndex ? "ほかのつくったものを見る" : "�
               height={project.screenshot.height}
               loading="lazy"
             />
+            {project.screenshot.caption && <figcaption>{project.screenshot.caption}</figcaption>}
           </figure>
         )
       }

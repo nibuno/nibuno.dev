@@ -7,6 +7,7 @@ export type ProjectLink = {
 };
 
 export type ProjectScreenshot = {
+  caption?: string;
   src: string;
   alt: string;
   width: number;
@@ -35,6 +36,45 @@ export type Project = {
 };
 
 export const projects: Project[] = [
+  {
+    slug: "shisan",
+    title: "Shisan — 家庭の資産を月ごとに記録するWebアプリ",
+    shortTitle: "Shisan",
+    period: "2026",
+    featured: true,
+    summary:
+      "口座などの資産残高を月ごとに記録し、総資産や前月比、名義人・カテゴリ別の内訳、資産推移を確認できるWebアプリケーションです。",
+    screenshot: {
+      src: "/images/projects/shisan.png",
+      alt: "Shisanのダッシュボード。架空のデータで、総資産560万円、前月比、カテゴリ別・名義人別の内訳を表示しています。",
+      width: 1280,
+      height: 720,
+      caption: "画面は紹介用の架空データです。",
+    },
+    stack: "Python / Django / Django Ninja / React / TypeScript / PostgreSQL / Recharts",
+    links: [],
+    sections: [
+      {
+        heading: "つくったもの",
+        paragraphs: [
+          "名義人・カテゴリごとに資産を登録し、毎月の残高を記録する家庭向けの資産管理アプリです。ダッシュボードで総資産とその内訳を確認し、グラフで月ごとの推移を振り返れます。",
+          "月次の入力画面では、複数の資産の残高をまとめて入力できます。画面はReactとTypeScript、APIはDjango Ninjaで実装し、データをPostgreSQLに保存しています。",
+        ],
+      },
+      {
+        heading: "残高入力で工夫したこと",
+        paragraphs: [
+          "過去に記録した残高は参考として表示しますが、今月の入力欄には自動で入れないようにしています。古い金額をそのまま今月の残高として保存してしまうことを避けるためです。今月分をすでに記録している場合は、その値を表示して編集できます。",
+        ],
+      },
+      {
+        heading: "世帯ごとのデータ管理",
+        paragraphs: [
+          "同じ世帯に所属するユーザーが資産情報を共有できるように、世帯とメンバーの関係をデータモデルで管理しています。APIでは所属世帯に絞ってデータを扱い、別世帯の情報が参照・更新・集計されないことを確認するテストも用意しています。",
+        ],
+      },
+    ],
+  },
   {
     slug: "emoemo",
     screenshot: {
