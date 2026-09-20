@@ -16,7 +16,8 @@ export type ProjectScreenshot = {
 
 export type ProjectSection = {
   heading: string;
-  paragraphs?: string[];
+  screenshot?: ProjectScreenshot;
+  paragraphs?: (string | (string | { label: string; href: string })[])[];
 };
 
 export type Project = {
@@ -29,6 +30,7 @@ export type Project = {
   featured?: boolean;
   summary: string;
   screenshot?: ProjectScreenshot;
+  gallery?: (ProjectScreenshot & { label: string })[];
   stack?: string;
   why?: string[];
   links: ProjectLink[];
@@ -38,39 +40,45 @@ export type Project = {
 export const projects: Project[] = [
   {
     slug: "shisan",
-    title: "Shisan — 家庭の資産を月ごとに記録するWebアプリ",
+    title: "Shisan — ゆるい資産管理アプリ",
     shortTitle: "Shisan",
     period: "2026",
     featured: true,
     summary:
-      "口座などの資産残高を月ごとに記録し、総資産や前月比、名義人・カテゴリ別の内訳、資産推移を確認できるWebアプリケーションです。",
-    screenshot: {
-      src: "/images/projects/shisan.png",
-      alt: "Shisanのダッシュボード。架空のデータで、総資産560万円、前月比、カテゴリ別・名義人別の内訳を表示しています。",
-      width: 1280,
-      height: 720,
-      caption: "画面は紹介用の架空データです。",
-    },
-    stack: "Python / Django / Django Ninja / React / TypeScript / PostgreSQL / Recharts",
-    links: [],
+      "月末に銀行口座やNISAの残高を記録して、月ごとの資産を確認するアプリケーション。",
+    gallery: [
+      { label: "TOP", src: "/images/projects/shisan.png", alt: "総資産633万円と、銀行・NISAや名義人ごとの内訳を表示したTOPページ。", width: 1664, height: 1066 },
+      { label: "資産管理", src: "/images/projects/shisan-assets.png", alt: "銀行口座や証券口座を、名義人・カテゴリ・用途とともに管理するページ。", width: 1664, height: 1066 },
+      { label: "残高入力", src: "/images/projects/shisan-snapshots.png", alt: "nibuとtatsuyaの口座残高を、2026年8月分としてまとめて入力するページ。", width: 1664, height: 1066 },
+      { label: "資産推移", src: "/images/projects/shisan-charts.png", alt: "名義人や期間で絞り込み、月ごとの資産の増減を折れ線グラフで確認するページ。", width: 1664, height: 1066 },
+    ],
+    stack: "Python / Django / Django Ninja / React / TypeScript",
+    why: [
+      "住宅購入をきっかけに、家庭の資産状況を把握したくなりました。ただ、日々の支出を家計簿につけるのは手間に感じていたため、月末の残高を記録する方向で開発しました。",
+    ],
+    links: [
+      {
+        label: "GitHubで見る",
+        href: "https://github.com/nibuno/shisan",
+        showOnHome: true,
+        primary: true,
+      },
+    ],
     sections: [
       {
         heading: "つくったもの",
         paragraphs: [
-          "名義人・カテゴリごとに資産を登録し、毎月の残高を記録する家庭向けの資産管理アプリです。ダッシュボードで総資産とその内訳を確認し、グラフで月ごとの推移を振り返れます。",
-          "月次の入力画面では、複数の資産の残高をまとめて入力できます。画面はReactとTypeScript、APIはDjango Ninjaで実装し、データをPostgreSQLに保存しています。",
+          "TOPページには資産の全体像と内訳を表示しています。資産管理、残高入力、資産推移の各ページを設けて、詳細や推移がわかるようにしています。",
         ],
       },
       {
-        heading: "残高入力で工夫したこと",
+        heading: "実装で取り組んだこと",
         paragraphs: [
-          "過去に記録した残高は参考として表示しますが、今月の入力欄には自動で入れないようにしています。古い金額をそのまま今月の残高として保存してしまうことを避けるためです。今月分をすでに記録している場合は、その値を表示して編集できます。",
-        ],
-      },
-      {
-        heading: "世帯ごとのデータ管理",
-        paragraphs: [
-          "同じ世帯に所属するユーザーが資産情報を共有できるように、世帯とメンバーの関係をデータモデルで管理しています。APIでは所属世帯に絞ってデータを扱い、別世帯の情報が参照・更新・集計されないことを確認するテストも用意しています。",
+          [
+            "バックエンドAPIはDjango（Django Ninja）を利用しています。実際の案件で活かせないかと思い、",
+            { label: "Django Styleguide", href: "https://github.com/HackSoftware/Django-Styleguide" },
+            "に沿った構成を試しています。具体的には、取得系の処理をselectors、登録・更新系の処理をservicesに分けています。",
+          ],
         ],
       },
     ],

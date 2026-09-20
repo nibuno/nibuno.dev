@@ -1,0 +1,41 @@
+---
+import ProjectImage from "./ProjectImage.astro";
+import type { ProjectScreenshot } from "../data/projects";
+interface Props { screenshots: (ProjectScreenshot & { label: string })[]; }
+const { screenshots } = Astro.props;
+---
+<div class="project-gallery" data-project-gallery>
+  <div class="project-gallery-controls" role="group" aria-label="紹介する画面">
+    {screenshots.map((screenshot, index) => (
+      <button type="button" data-gallery-select={index} aria-pressed={index === 0}>
+        {screenshot.label}
+      </button>
+    ))}
+  </div>
+  <div class="project-gallery-stage">
+  {screenshots.map((screenshot, index) => (
+    <div data-gallery-panel={index} hidden={index !== 0}>
+      <ProjectImage screenshot={screenshot} />
+    </div>
+  ))}
+  </div>
+  <span class="gallery-announcement" aria-live="polite" aria-atomic="true" data-gallery-status></span>
+</div>
+<script>
+  document.querySelectorAll<HTMLElement>("[data-project-gallery]").forEach((gallery) => {
+    const buttons = gallery.querySelectorAll<HTMLButtonElement>("[data-gallery-select]");
+    const panels = gallery.querySelectorAll<HTMLElement>("[data-gallery-panel]");
+    const status = gallery.querySelector<HTMLElement>("[data-gallery-status]");
+    let selected = 0;
+    const select = (index: number) => {
+      selected = (index + panels.length) % panels.length;
+      buttons.forEach((item, i) => item.setAttribute("aria-pressed", String(i === selected)));
+      panels.forEach((panel, i) => { panel.hidden = i !== selected; });
+      if (status) status.textContent = `${buttons[selected].textContent?.trim()}（${selected + 1} / ${panels.length}）`;
+    };
+    buttons.forEach((button, index) => {
+      button.addEventListener("click", () => select(index));
+    });
+
+  });
+</script>
