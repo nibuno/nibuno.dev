@@ -1,5 +1,7 @@
 ---
 import BaseLayout from "../../components/BaseLayout.astro";
+import ProjectGallery from "../../components/ProjectGallery.astro";
+import ProjectImage from "../../components/ProjectImage.astro";
 import { hasProjectsIndex, projects, type Project } from "../../data/projects";
 
 export function getStaticPaths() {
@@ -59,16 +61,10 @@ const backLabel = hasProjectsIndex ? "ほかのつくったものを見る" : "�
       </header>
 
       {
-        project.screenshot && (
-          <figure class="detail-shot">
-            <img
-              src={project.screenshot.src}
-              alt={project.screenshot.alt}
-              width={project.screenshot.width}
-              height={project.screenshot.height}
-              loading="lazy"
-            />
-          </figure>
+        project.gallery ? (
+          <ProjectGallery screenshots={project.gallery} />
+        ) : project.screenshot && (
+          <ProjectImage screenshot={project.screenshot} />
         )
       }
 
@@ -96,7 +92,14 @@ const backLabel = hasProjectsIndex ? "ほかのつくったものを見る" : "�
         project.sections.map((section) => (
           <section class="detail-section">
             <h2>{section.heading}</h2>
-            {section.paragraphs?.map((paragraph) => <p>{paragraph}</p>)}
+            {section.screenshot && (
+              <ProjectImage screenshot={section.screenshot} inSection />
+            )}
+            {section.paragraphs?.map((paragraph) => (
+              <p>{typeof paragraph === "string" ? paragraph : paragraph.map((part) =>
+                typeof part === "string" ? part : <a href={part.href} target="_blank" rel="noreferrer">{part.label}</a>
+              )}</p>
+            ))}
           </section>
         ))
       }
@@ -118,4 +121,75 @@ const backLabel = hasProjectsIndex ? "ほかのつくったものを見る" : "�
       </p>
     </nav>
   </main>
+  <dialog class="image-zoom-dialog" aria-label="拡大した画像">
+    <button type="button" class="image-zoom-close" aria-label="画像を閉じる" autofocus>
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
+        <path d="M6 6l12 12M18 6L6 18" />
+      </svg>
+    </button>
+    <div class="image-zoom-frame">
+    <img class="image-zoom-full" alt="" />
+    <button type="button" class="image-zoom-arrow image-zoom-prev" aria-label="前の画像" hidden>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m14 6-6 6 6 6" /></svg>
+    </button>
+    <button type="button" class="image-zoom-arrow image-zoom-next" aria-label="次の画像" hidden>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m10 6 6 6-6 6" /></svg>
+    </button>
+    </div>
+    <span class="gallery-announcement" aria-live="polite" aria-atomic="true" data-zoom-status></span>
+  </dialog>
+  <script>
+    const dialog = document.querySelector<HTMLDialogElement>(".image-zoom-dialog");
+    const fullImage = dialog?.querySelector<HTMLImageElement>(".image-zoom-full");
+    const closeButton = dialog?.querySelector<HTMLButtonElement>(".image-zoom-close");
+    let trigger: HTMLButtonElement | null = null;
+    let previousOverflow = "";
+    const previousButton = dialog?.querySelector<HTMLButtonElement>(".image-zoom-prev");
+    const nextButton = dialog?.querySelector<HTMLButtonElement>(".image-zoom-next");
+    const status = dialog?.querySelector<HTMLElement>("[data-zoom-status]");
+    let images: HTMLButtonElement[] = [];
+    let selected = 0;
+
+    if (dialog && fullImage) {
+      const showImage = (index: number) => {
+        selected = (index + images.length) % images.length;
+        const image = images[selected];
+        const thumbnail = image.querySelector("img");
+        const ratio = thumbnail ? thumbnail.width / thumbnail.height : 1;
+        dialog.style.setProperty("--image-ratio", String(ratio));
+        fullImage.src = image.dataset.src ?? "";
+        fullImage.alt = image.dataset.alt ?? "";
+        if (status) status.textContent = `${selected + 1} / ${images.length}：${fullImage.alt}`;
+      };
+      previousButton?.addEventListener("click", () => showImage(selected - 1));
+      nextButton?.addEventListener("click", () => showImage(selected + 1));
+      dialog.addEventListener("keydown", (event) => {
+        if (images.length > 1 && (event.key === "ArrowLeft" || event.key === "ArrowRight")) {
+          event.preventDefault();
+          showImage(selected + (event.key === "ArrowLeft" ? -1 : 1));
+        }
+      });
+      document.querySelectorAll<HTMLButtonElement>("[data-image-zoom]").forEach((button) => {
+        button.addEventListener("click", () => {
+          trigger = button;
+          const gallery = button.closest("[data-project-gallery]");
+          images = gallery ? Array.from(gallery.querySelectorAll<HTMLButtonElement>("[data-image-zoom]")) : [button];
+          if (previousButton) previousButton.hidden = images.length < 2;
+          if (nextButton) nextButton.hidden = images.length < 2;
+          showImage(images.indexOf(button));
+          previousOverflow = document.body.style.overflow;
+          document.body.style.overflow = "hidden";
+          dialog.showModal();
+        });
+      });
+      closeButton?.addEventListener("click", () => dialog.close());
+      dialog.addEventListener("click", (event) => {
+        if (event.target === dialog) dialog.close();
+      });
+      dialog.addEventListener("close", () => {
+        document.body.style.overflow = previousOverflow;
+        trigger?.focus({ preventScroll: true });
+      });
+    }
+  </script>
 </BaseLayout>

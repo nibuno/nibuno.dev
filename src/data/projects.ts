@@ -7,6 +7,7 @@ export type ProjectLink = {
 };
 
 export type ProjectScreenshot = {
+  caption?: string;
   src: string;
   alt: string;
   width: number;
@@ -15,7 +16,8 @@ export type ProjectScreenshot = {
 
 export type ProjectSection = {
   heading: string;
-  paragraphs?: string[];
+  screenshot?: ProjectScreenshot;
+  paragraphs?: (string | (string | { label: string; href: string })[])[];
 };
 
 export type Project = {
@@ -28,6 +30,7 @@ export type Project = {
   featured?: boolean;
   summary: string;
   screenshot?: ProjectScreenshot;
+  gallery?: (ProjectScreenshot & { label: string })[];
   stack?: string;
   why?: string[];
   links: ProjectLink[];
@@ -35,6 +38,51 @@ export type Project = {
 };
 
 export const projects: Project[] = [
+  {
+    slug: "shisan",
+    title: "Shisan — ゆるい資産管理アプリ",
+    shortTitle: "Shisan",
+    period: "2026",
+    featured: true,
+    summary:
+      "月末に銀行口座やNISAの残高を記録して、月ごとの資産を確認するアプリケーション。",
+    gallery: [
+      { label: "TOP", src: "/images/projects/shisan.png", alt: "総資産633万円と、銀行・NISAや名義人ごとの内訳を表示したTOPページ。", width: 1664, height: 1066 },
+      { label: "資産管理", src: "/images/projects/shisan-assets.png", alt: "銀行口座や証券口座を、名義人・カテゴリ・用途とともに管理するページ。", width: 1664, height: 1066 },
+      { label: "残高入力", src: "/images/projects/shisan-snapshots.png", alt: "nibuとtatsuyaの口座残高を、2026年8月分としてまとめて入力するページ。", width: 1664, height: 1066 },
+      { label: "資産推移", src: "/images/projects/shisan-charts.png", alt: "名義人や期間で絞り込み、月ごとの資産の増減を折れ線グラフで確認するページ。", width: 1664, height: 1066 },
+    ],
+    stack: "Python / Django / Django Ninja / React / TypeScript",
+    why: [
+      "住宅購入をきっかけに、家庭の資産状況を把握したくなりました。ただ、日々の支出を家計簿につけるのは手間に感じていたため、月末の残高を記録する方向で開発しました。",
+    ],
+    links: [
+      {
+        label: "GitHubで見る",
+        href: "https://github.com/nibuno/shisan",
+        showOnHome: true,
+        primary: true,
+      },
+    ],
+    sections: [
+      {
+        heading: "つくったもの",
+        paragraphs: [
+          "TOPページには資産の全体像と内訳を表示しています。資産管理、残高入力、資産推移の各ページを設けて、詳細や推移がわかるようにしています。",
+        ],
+      },
+      {
+        heading: "実装で取り組んだこと",
+        paragraphs: [
+          [
+            "バックエンドAPIはDjango（Django Ninja）を利用しています。実際の案件で活かせないかと思い、",
+            { label: "Django Styleguide", href: "https://github.com/HackSoftware/Django-Styleguide" },
+            "に沿った構成を試しています。具体的には、取得系の処理をselectors、登録・更新系の処理をservicesに分けています。この規模で分けるメリットはあまりないですが、分割方法の1つとして参考になりました。",
+          ],
+        ],
+      },
+    ],
+  },
   {
     slug: "emoemo",
     screenshot: {

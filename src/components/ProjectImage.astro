@@ -1,0 +1,22 @@
+---
+import type { ProjectScreenshot } from "../data/projects";
+interface Props {
+  screenshot: ProjectScreenshot;
+  inSection?: boolean;
+}
+const { screenshot, inSection = false } = Astro.props;
+---
+<figure class:list={["detail-shot", { "detail-section-shot": inSection }]}>
+  <button
+    type="button"
+    class="image-zoom-trigger"
+    data-image-zoom
+    data-src={screenshot.src}
+    data-alt={screenshot.alt}
+    aria-label="画像を拡大"
+    aria-haspopup="dialog"
+  >
+    <img src={screenshot.src} alt={screenshot.alt} width={screenshot.width} height={screenshot.height} loading="lazy" />
+  </button>
+  {screenshot.caption && <figcaption>{screenshot.caption}</figcaption>}
+</figure>
