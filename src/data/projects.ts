@@ -77,7 +77,7 @@ export const projects: Project[] = [
           [
             "バックエンドAPIはDjango（Django Ninja）を利用しています。実際の案件で活かせないかと思い、",
             { label: "Django Styleguide", href: "https://github.com/HackSoftware/Django-Styleguide" },
-            "に沿った構成を試しています。具体的には、取得系の処理をselectors、登録・更新系の処理をservicesに分けています。",
+            "に沿った構成を試しています。具体的には、取得系の処理をselectors、登録・更新系の処理をservicesに分けています。この規模で分けるメリットはあまりないですが、分割方法の1つとして参考になりました。",
           ],
         ],
       },
